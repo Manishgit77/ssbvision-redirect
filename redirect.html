@@ -3,14 +3,10 @@
 <head>
     <title>Redirecting to SSBVision...</title>
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
-        const paymentId = urlParams.get('payment_id');
-        
-        window.location.href = `ssbvision://payment/success?payment_id=${paymentId}&status=success&coins=40`;
-        
-        setTimeout(() => {
-            window.location.href = "https://play.google.com/store/apps/details?id=com.newpromax.bookandpen29349";
-        }, 1000);
+      const urlParams = new URLSearchParams(window.location.search);
+      const paymentId = urlParams.get('payment_id');
+      const status = urlParams.get('status') || 'success';
+      window.location.href = `ssbvision://payment/success?payment_id=${paymentId}&status=${status}&coins=40`;
     </script>
 </head>
 <body>
