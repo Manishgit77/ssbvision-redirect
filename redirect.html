@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecting to SSBVision...</title>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const paymentId = urlParams.get('payment_id');
+        
+        window.location.href = `ssbvision://payment/success?payment_id=${paymentId}&status=success&coins=40`;
+        
+        setTimeout(() => {
+            window.location.href = "https://play.google.com/store/apps/details?id=com.newpromax.bookandpen29349";
+        }, 1000);
+    </script>
+</head>
+<body>
+    <p>Redirecting to SSBVision app...</p>
+</body>
+</html>
