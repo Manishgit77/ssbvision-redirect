@@ -1,15 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Redirecting to SSBVision...</title>
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const paymentId = urlParams.get('payment_id');
-      const status = urlParams.get('status') || 'success';
-      window.location.href = `ssbvision://payment/success?payment_id=${paymentId}&status=${status}&coins=40`;
-    </script>
+    <title>Payment Successful</title>
+    <style>
+        #prompt {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            text-align: center;
+            z-index: 1000;
+        }
+        button {
+            margin: 5px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #openApp {
+            background: #4CAF50;
+            color: white;
+        }
+        #cancel {
+            background: #f44336;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <p>Redirecting to SSBVision app...</p>
+    <div id="prompt" style="display: none;">
+        <p>Would you like to open SSB AI App to get your coins?</p>
+        <button id="openApp">Open Now (4s)</button>
+        <button id="cancel">Stay Here</button>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const paymentId = urlParams.get('payment_id');
+        const status = urlParams.get('status') || 'success';
+        
+        // Show prompt after 1 second (let page load)
+        setTimeout(() => {
+            const prompt = document.getElementById('prompt');
+            const openBtn = document.getElementById('openApp');
+            const cancelBtn = document.getElementById('cancel');
+            let timeLeft = 4;
+            
+            prompt.style.display = 'block';
+            
+            // Update button text with countdown
+            const countdown = setInterval(() => {
+                timeLeft--;
+                openBtn.textContent = `Open Now (${timeLeft}s)`;
+                if(timeLeft <= 0) {
+                    clearInterval(countdown);
+                    redirectToApp();
+                }
+            }, 1000);
+            
+            // Button handlers
+            openBtn.onclick = redirectToApp;
+            cancelBtn.onclick = () => {
+                clearInterval(countdown);
+                prompt.style.display = 'none';
+            };
+            
+            function redirectToApp() {
+                window.location.href = `ssbvision://payment/success?payment_id=${paymentId}&status=${status}&coins=40`;
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
