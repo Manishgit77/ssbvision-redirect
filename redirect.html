@@ -3,53 +3,68 @@
 <head>
     <title>Payment Successful</title>
     <style>
-        #prompt {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
-            text-align: center;
-            z-index: 1000;
-            width: 80%;
-            max-width: 400px;
-        }
-        #prompt p {
-            font-size: 18px;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        button {
+        /* Reset default margins */
+        body {
             margin: 0;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            min-width: 120px;
+            padding: 0;
+            font-family: Arial, sans-serif;
         }
+        
+        /* Dialog styling with !important to override any potential conflicts */
+        #prompt {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            background: white !important;
+            padding: 25px !important;
+            border-radius: 15px !important;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3) !important;
+            text-align: center !important;
+            z-index: 1000 !important;
+            width: 80% !important;
+            max-width: 400px !important;
+            margin: 0 !important;
+        }
+        
+        #prompt p {
+            font-size: 18px !important;
+            margin-bottom: 20px !important;
+            line-height: 1.4 !important;
+            color: #333 !important;
+        }
+        
+        .buttons {
+            display: flex !important;
+            justify-content: center !important;
+            gap: 15px !important;
+        }
+        
+        button {
+            margin: 0 !important;
+            padding: 12px 25px !important;
+            border: none !important;
+            border-radius: 8px !important;
+            cursor: pointer !important;
+            font-size: 16px !important;
+            font-weight: bold !important;
+            min-width: 120px !important;
+        }
+        
         #openApp {
-            background: #4CAF50;
-            color: white;
+            background: #4CAF50 !important;
+            color: white !important;
         }
+        
         #cancel {
-            background: #f44336;
-            color: white;
+            background: #f44336 !important;
+            color: white !important;
         }
     </style>
 </head>
 <body>
-    <div id="prompt" style="display: none;">
-        <p>Would you like to open SSB AI App to get your coins?</p>
+    <div id="prompt" style="display: none !important;">
+        <p>Would you like to open AI SSB App to get your coins?</p>
         <div class="buttons">
             <button id="openApp">Open Now (4s)</button>
             <button id="cancel">Stay Here</button>
